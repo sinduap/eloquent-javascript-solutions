@@ -1,5 +1,5 @@
 import { describe, it, expect, afterEach, jest } from '@jest/globals';
-import { printTriangle, printFizzBuzz } from '.';
+import { printTriangle, printFizzBuzz, printChessBoard } from '.';
 
 const logSpy = jest.spyOn(console, 'log');
 
@@ -40,5 +40,24 @@ describe('Fizz Buzz', () => {
     expect(logSpy).nthCalledWith(75, 'FizzBuzz');
     expect(logSpy).nthCalledWith(98, 98);
     expect(logSpy).nthCalledWith(100, 'Buzz');
+  });
+});
+
+describe('Chess Board', () => {
+  it('Should be invoked 8 times', () => {
+    printChessBoard();
+    expect(logSpy).toHaveBeenCalledTimes(8);
+  });
+
+  it('Should be invoked with a correct argument', () => {
+    printChessBoard();
+    expect(logSpy).nthCalledWith(1, ' # # # #');
+    expect(logSpy).nthCalledWith(2, '# # # # ');
+    expect(logSpy).nthCalledWith(3, ' # # # #');
+    expect(logSpy).nthCalledWith(4, '# # # # ');
+    expect(logSpy).nthCalledWith(5, ' # # # #');
+    expect(logSpy).nthCalledWith(6, '# # # # ');
+    expect(logSpy).nthCalledWith(7, ' # # # #');
+    expect(logSpy).nthCalledWith(8, '# # # # ');
   });
 });

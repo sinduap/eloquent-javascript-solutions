@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@jest/globals';
-import { min, isEven } from '.';
+import { min, isEven, count } from '.';
 
 describe('Minimum', () => {
   it('Should takes two arguments and returns their minimum', () => {
@@ -26,5 +26,31 @@ describe('Recursion', () => {
     const result3 = isEven(-8);
     expect(result3).toBe(true);
     expect(result3).toEqual(expect.any(Boolean));
+  });
+});
+
+describe('Bean Counting', () => {
+  describe('countBs fn', () => {
+    it('Should throw a TypeError if the given argument is not a string', () => {
+      const throwError = () => count.Bs(5);
+      expect(throwError).toThrow(TypeError);
+    });
+
+    it('Should returns a number that indicates how many uppercase B characters there are in the string', () => {
+      const result = count.Bs('BOB');
+      expect(result).toBe(2);
+    });
+  });
+
+  describe('countChar fn', () => {
+    it('Should throw a TypeError if the given argument is not a string', () => {
+      const throwError = () => count.char(5);
+      expect(throwError).toThrow(TypeError);
+    });
+  });
+
+  it('Should returns a number that indicates how many uppercase B characters there are in the string', () => {
+    const result = count.char('kakkerlak', 'k');
+    expect(result).toBe(4);
   });
 });

@@ -1,5 +1,12 @@
 import { describe, it, expect, afterEach, jest } from '@jest/globals';
-import { range, sum, reverseArray, reverseArrayInPlace, List } from '.';
+import {
+  range,
+  sum,
+  reverseArray,
+  reverseArrayInPlace,
+  List,
+  deepEqual,
+} from '.';
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -105,6 +112,36 @@ describe('A List', () => {
       expect(result1).toBe(10);
       expect(result2).toBe(20);
       expect(result3).toBe(30);
+    });
+  });
+});
+
+describe('Deep Comparison', () => {
+  describe('Primitive type comparison', () => {
+    it('Should takes two values and returns true only if they are the same value', () => {
+      expect(deepEqual(NaN, NaN)).toBe(true);
+      expect(deepEqual(true, 1)).toBe(false);
+      expect(deepEqual('Thinking', 10)).toBe(false);
+      expect(deepEqual(10n, 10n)).toBe(true);
+      expect(deepEqual(0, -0)).toBe(true);
+      expect(deepEqual(-Infinity, -Infinity)).toBe(true);
+      expect(deepEqual(false, 0)).toBe(false);
+    });
+  });
+
+  describe('Reference type comparison', () => {
+    it('Should takes two values and returns true only if they are objects with the same properties where the values of the properties are equal when compared', () => {
+      const obj = { here: { is: 'an' }, object: {} };
+      expect(deepEqual(obj, { here: { is: 'an' }, object: {} })).toBe(true);
+      expect(deepEqual(obj, { here: { is: 'a' }, object: {} })).toBe(false);
+      expect(deepEqual(obj, { here: { is: 'an' }, object: [] })).toBe(false);
+    });
+
+    it('Should takes two values and returns true only if they are arrays with the same length where each elements of the arrays are equal when compared', () => {
+      const data = ['i', 'have', 5, {}];
+      expect(deepEqual(data, ['i', 'have', 5, {}])).toBe(true);
+      expect(deepEqual(data, ['I', 'have', 5, {}])).toBe(false);
+      expect(deepEqual(data, ['i', 'have', 5, []])).toBe(false);
     });
   });
 });

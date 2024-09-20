@@ -1,5 +1,5 @@
 import { describe, it, expect, jest } from '@jest/globals';
-import { flatten } from '.';
+import { flatten, loop } from '.';
 
 describe('Flattening', () => {
   const arrays = [[1, 2, 3], [4, 5], [6]];
@@ -19,5 +19,24 @@ describe('Flattening', () => {
     expect(arrayConcatSpy).toBeCalled();
 
     jest.clearAllMocks();
+  });
+});
+
+describe('Your Own Loop', () => {
+  it('Should take a value, a test function, an update function, and a body function. Each iteration', () => {
+    const n = 3;
+    let condition = n => n > 0;
+    let update = n => n - 1;
+    let body = console.log;
+
+    condition = jest.fn(condition);
+    update = jest.fn(update);
+    body = jest.fn(body);
+
+    loop(n, condition, update, body);
+
+    expect(condition).toBeCalledTimes(n + 1); // 4th -> false
+    expect(update).toBeCalledTimes(n);
+    expect(body).toBeCalledTimes(n);
   });
 });

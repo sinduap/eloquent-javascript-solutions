@@ -1,5 +1,5 @@
 import { describe, it, expect, jest } from '@jest/globals';
-import { flatten, loop, every } from '.';
+import { flatten, loop, every, dominantDirection } from '.';
 
 describe('Flattening', () => {
   const arrays = [[1, 2, 3], [4, 5], [6]];
@@ -90,5 +90,16 @@ describe('Everything', () => {
       every.useLoop(arr, predicate);
       expect(everySpy).not.toHaveBeenCalled();
     });
+  });
+});
+
+describe('Dominant direction', () => {
+  it('Should computes the dominant writing direction in a string of text', () => {
+    const text1 = 'Hello!';
+    const text2 = 'Hey, مساء الخير';
+    const result1 = dominantDirection(text1);
+    const result2 = dominantDirection(text2);
+    expect(result1).toBe('ltr');
+    expect(result2).toBe('rtl');
   });
 });

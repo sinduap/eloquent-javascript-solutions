@@ -8,7 +8,7 @@ export default [
       semi: 'error',
       'prefer-const': 'error',
       'no-undef': 'error',
-      'no-unused-vars': 'error',
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
     languageOptions: {
       sourceType: 'module',

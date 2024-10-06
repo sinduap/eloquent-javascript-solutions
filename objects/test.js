@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { Vector } from '.';
+import { Vector, Group } from '.';
 
 describe('A Vector Type', () => {
   describe('constructor fn', () => {
@@ -37,6 +37,58 @@ describe('A Vector Type', () => {
     it('Should computes the length of the vector—that is, the distance of the point (x, y) from the origin (0, 0)', () => {
       const result = new Vector(3, 4).length;
       expect(result).toBe(5);
+    });
+  });
+});
+
+describe('Groups', () => {
+  describe('constructor fn', () => {
+    it('Should creates an empty group', () => {
+      const result = new Group().size;
+      expect(result).toBe(0);
+    });
+  });
+
+  describe('add method', () => {
+    it("Should adds a value to the group (but only if it isn't already a member)", () => {
+      const group = Group.from([10, 20]);
+      group.add(20).add(30);
+      const result1 = group.has(20);
+      const result2 = group.has(30);
+      expect(result1).toBe(true);
+      expect(result2).toBe(true);
+    });
+  });
+
+  describe('delete method', () => {
+    it('Should removes its argument from the group (if it was a member)', () => {
+      const group = Group.from([10, 20]);
+      group.delete(20).delete(30);
+      const result1 = group.has(20);
+      const result2 = group.has(30);
+      expect(result1).toBe(false);
+      expect(result2).toBe(false);
+    });
+  });
+
+  describe('has method', () => {
+    it('Should returns a Boolean value indicating whether its argument is a member of the group', () => {
+      const group = Group.from([10, 20]);
+      const result1 = group.has(10);
+      const result2 = group.has(30);
+      expect(result1).toBe(true);
+      expect(result2).toBe(false);
+    });
+  });
+
+  describe('from static method', () => {
+    it('Should takes an iterable object as its argument and creates a group that contains all the values produced by iterating over it', () => {
+      const result1 = Group.from([10, 20]);
+      expect(result1).toBeInstanceOf(Group);
+      const result2 = result1.has(10);
+      const result3 = result1.has(20);
+      expect(result2).toBe(true);
+      expect(result3).toBe(true);
     });
   });
 });

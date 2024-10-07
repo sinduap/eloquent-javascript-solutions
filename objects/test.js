@@ -1,4 +1,4 @@
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
 import { Vector, Group } from '.';
 
 describe('A Vector Type', () => {
@@ -90,5 +90,15 @@ describe('Groups', () => {
       expect(result2).toBe(true);
       expect(result3).toBe(true);
     });
+  });
+});
+
+describe('Iterable Groups', () => {
+  it('Should be iterable', () => {
+    console.log = jest.fn(console.log);
+    for (const value of Group.from(['a', 'b', 'c'])) {
+      console.log(value);
+    }
+    expect(console.log).toBeCalledTimes(3);
   });
 });

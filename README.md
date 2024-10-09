@@ -11,6 +11,7 @@ This repository contains exercise and project solutions of [Eloquent JavaScript]
 3. [Data Structures](data-structures/index.js)
 4. [Higher Order Functions](higher-order-functions/index.js)
 5. [Objects](objects/)
+6. [Robot (Project)](robot/)
 
 ## Instructions
 

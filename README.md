@@ -10,6 +10,7 @@ This repository contains exercise and project solutions of [Eloquent JavaScript]
 2. [Functions](functions/index.js)
 3. [Data Structures](data-structures/index.js)
 4. [Higher Order Functions](higher-order-functions/index.js)
+5. [Objects](objects/)
 
 ## Instructions
 

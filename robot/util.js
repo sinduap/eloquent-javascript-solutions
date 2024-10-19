@@ -1,8 +1,8 @@
 /**
- * @param {Object} `graph`
- * @param {String} `from`
- * @param {String} `to`
- * @return {Array<String>}
+ * @param {object} graph The graph of places
+ * @param {string} from The starting location
+ * @param {string} to The destination
+ * @return {string[]} Array representing a route from the starting location to the destination
  */
 export function findRoute(graph, from, to) {
   const work = [{ at: from, route: [] }];
